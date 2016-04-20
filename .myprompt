@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# This script is used to set a good prompt.
+# To change your prompt, just run:
+#
+# prompt_command PROMPT_TEXT
+#
+# You can also use one of the 4 ready-made texts made by me:
+#
+# prompt_command $prompt_small_bold
+#
+# You can also use the color codes written by me to make
+# your own colored prompt.
+
+# This script uses https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
+if [ -f ~/.git_prompt.sh ]; then
+    source ~/.git_prompt.sh
+fi
+
+GIT_PS1_SHOWDIRTYSTATE='blah'
+GIT_PS1_SHOWUNTRACKEDFILES='blah'
+GIT_PS1_SHOWCOLORHINTS='blah'
+
+export RCol='\[\e[0m\]'
+export Red='\[\e[0;31m\]'
+export Gre='\[\e[0;32m\]'
+export Blu='\[\e[0;34m\]'
+export BRed='\[\e[1;31m\]'
+export BGre='\[\e[1;32m\]'
+export BBlu='\[\e[1;34m\]'
+
+export prompt_small="${Gre}\u@\h${RCol}:${Blu}\W${RCol}"
+export prompt_big="${Gre}\u@\h${RCol}:${Blu}\w${RCol}"
+export prompt_small_bold="${BGre}\u@\h${RCol}:${BBlu}\W${RCol}"
+export prompt_big_bold="${BGre}\u@\h${RCol}:${BBlu}\w${RCol}"
+
+function prompt_command()
+{
+    local EXIT="$?"
+    PS1=""
+
+    # add virtualenv name
+    if [ -n "$VIRTUAL_ENV" ]; then
+        local venv_name=$(basename "$VIRUAL_ENV")
+        PS1+="($venv_name)"
+    fi
+
+    # add exit status
+    if [ "$EXIT" != 0 ]; then
+        PS1+="${Red}($EXIT)${RCol}"
+    else
+        PS1+="${Gre}($EXIT)${RCol}"
+    fi
+
+    # add main prompt stuff
+    PS1+="$1"
+
+    # add git prompt
+    PS1+="\$(__git_ps1)"
+    PS1+="\$ "
+}
+
+export -f prompt_command
+
+prompt_command $prompt_small
