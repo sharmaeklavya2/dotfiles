@@ -17,7 +17,7 @@ fi
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
-alias eg++='g++ --std=c++11 -Wall -Wpedantic -Wno-sign-compare'
-alias egcc='gcc -Wall -Wpedantic -Wno-sign-compare'
+alias eg++='g++ -D EKLAVYA --std=c++11 -Wall -Wpedantic -Wno-sign-compare'
+alias egcc='gcc -D EKLAVYA -Wall -Wpedantic -Wno-sign-compare'
 
 alias nless='less -N'
