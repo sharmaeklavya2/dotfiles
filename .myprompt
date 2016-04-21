@@ -3,14 +3,14 @@
 # This script is used to set a good prompt.
 # To change your prompt, just run:
 #
-# prompt_command PROMPT_TEXT
+# PROMPT_COMMAND=prompt_setting_function
 #
-# You can also use one of the 4 ready-made texts made by me:
+# You can also use one of the 4 ready-made functions made by me:
 #
-# prompt_command $prompt_small_bold
+# PROMPT_COMMAND=prompt_command_small_bold
 #
 # You can also use the color codes written by me to make
-# your own colored prompt.
+# your own colored prompt-setting-function
 
 # This script uses https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 if [ -f ~/.git_prompt.sh ]; then
@@ -41,7 +41,7 @@ function prompt_command()
 
     # add virtualenv name
     if [ -n "$VIRTUAL_ENV" ]; then
-        local venv_name=$(basename "$VIRUAL_ENV")
+        local venv_name=$(basename "$VIRTUAL_ENV")
         PS1+="($venv_name)"
     fi
 
@@ -62,4 +62,18 @@ function prompt_command()
 
 export -f prompt_command
 
-prompt_command $prompt_small
+function prompt_command_small()
+{ prompt_command "$prompt_small"; }
+function prompt_command_big()
+{ prompt_command "$prompt_big"; }
+function prompt_command_small_bold()
+{ prompt_command "$prompt_small_bold"; }
+function prompt_command_big_bold()
+{ prompt_command "$prompt_big_bold"; }
+
+export -f prompt_command_small
+export -f prompt_command_big
+export -f prompt_command_small_bold
+export -f prompt_command_big_bold
+
+PROMPT_COMMAND=prompt_command_small
