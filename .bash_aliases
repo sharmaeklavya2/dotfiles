@@ -21,3 +21,20 @@ alias eg++='g++ -D EKLAVYA --std=c++11 -Wall -Wpedantic -Wno-sign-compare'
 alias egcc='gcc -D EKLAVYA -Wall -Wpedantic -Wno-sign-compare'
 
 alias nless='less -N'
+
+# functions
+
+# fast goto: cd to a nautilus bookmark
+function fgoto(){
+    if [ -z "$1" ]; then
+        echo "You must specify a bookmark name." 1>&2
+        false
+    else
+        newpath=$(bkmrk.py "$1")
+        if [ "$?" == "0" ]; then
+            cd "$newpath"
+        else
+            false
+        fi
+    fi
+}
