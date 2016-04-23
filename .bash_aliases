@@ -38,3 +38,7 @@ function fgoto(){
         fi
     fi
 }
+
+function mydiff(){
+    colordiff -u $@ | less -R
+}
