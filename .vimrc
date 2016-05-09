@@ -1,4 +1,4 @@
-set scrolloff=4
+set scrolloff=8
 set cursorline "highlight current line
 set number "line numbering
 set relativenumber
@@ -27,9 +27,10 @@ execute pathogen#infect()
 syntax enable
 set background=dark
 " let g:solarized_termcolors=256
+let g:solarized_termtrans=1
 colorscheme solarized
 
 " airline
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts=1
 set laststatus=2
 let g:ctags_statusline=1
