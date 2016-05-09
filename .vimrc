@@ -3,6 +3,7 @@ set cursorline "highlight current line
 set number "line numbering
 set relativenumber
 set expandtab
+set hlsearch
 
 " indentation and tabs
 set tabstop=4
