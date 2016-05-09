@@ -7,6 +7,9 @@
 if [ -f ~/.eku/myprompt ]; then
     source ~/.eku/myprompt
 fi
+if [ -f ~/.eku/tmux_starter ]; then
+    source ~/.eku/tmux_starter
+fi
 
 # additions to PATH
 if [ -d "$HOME/ext_bin" ] ; then
