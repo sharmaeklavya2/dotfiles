@@ -2,6 +2,9 @@
 
 # non-alias customizations
 
+# set tab stops to 4 characters
+tabs -4
+
 # set a nice prompt
 if [ -f ~/.myprompt ]; then
     source ~/.myprompt
