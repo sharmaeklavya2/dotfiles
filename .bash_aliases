@@ -6,8 +6,8 @@
 tabs -4
 
 # set a nice prompt
-if [ -f ~/.myprompt ]; then
-    source ~/.myprompt
+if [ -f ~/.eku/myprompt ]; then
+    source ~/.eku/myprompt
 fi
 
 # unlike ~/bin, ext_bin contains executables not made by me
