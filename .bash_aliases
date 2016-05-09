@@ -1,19 +1,20 @@
 #!/bin/bash
 
-# non-alias customizations
+# Even though .bash_aliases is meant to store aliases, I'm using it for
+# other things as well, since it is sourced in Ubuntu's default .bashrc.
 
-# set tab stops to 4 characters
-tabs -4
-
-# set a nice prompt
+# include other files
 if [ -f ~/.eku/myprompt ]; then
     source ~/.eku/myprompt
 fi
 
-# unlike ~/bin, ext_bin contains executables not made by me
+# additions to PATH
 if [ -d "$HOME/ext_bin" ] ; then
     PATH="$HOME/ext_bin:$PATH"
 fi
+
+# set tab stops to 4 characters
+tabs -4
 
 # alises
 
@@ -26,6 +27,10 @@ alias egcc='gcc -D EKLAVYA -Wall -Wpedantic -Wno-sign-compare'
 alias nless='less -N'
 
 # functions
+
+function mydiff(){
+    colordiff -u $@ | less -R
+}
 
 # fast goto: cd to a nautilus bookmark
 function fgoto(){
@@ -40,8 +45,4 @@ function fgoto(){
             false
         fi
     fi
-}
-
-function mydiff(){
-    colordiff -u $@ | less -R
 }
