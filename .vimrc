@@ -2,11 +2,11 @@ set scrolloff=8
 set cursorline "highlight current line
 set number "line numbering
 set relativenumber
-set expandtab
 set hlsearch
 set clipboard=unnamedplus
 
 " indentation and tabs
+set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
