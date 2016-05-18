@@ -2,6 +2,7 @@
 __pycache__/
 /_links/
 /readme.html
+*.sw[po]
 
 Thumbs.db
 *~
