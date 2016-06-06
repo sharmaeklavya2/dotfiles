@@ -57,7 +57,13 @@ function prompt_command()
 
     # add git prompt
     PS1+="\$(__git_ps1)"
-    PS1+="\$ "
+
+    # add '$' for user and '#' for superuser
+    if [ "$UID" == "0" ]; then
+        PS1+='# '
+    else
+        PS1+='$ '
+    fi
 }
 
 export -f prompt_command
