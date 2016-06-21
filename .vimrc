@@ -36,3 +36,6 @@ colorscheme solarized
 let g:airline_powerline_fonts=1
 set laststatus=2
 let g:ctags_statusline=1
+
+" custom syntax highlighting
+au BufRead,BufNewFile *.pyi set filetype=python
