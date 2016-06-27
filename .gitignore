@@ -3,6 +3,7 @@ __pycache__/
 /_links/
 /readme.html
 *.sw[po]
+/.vim
 
 Thumbs.db
 *~
