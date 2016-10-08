@@ -39,3 +39,4 @@ let g:ctags_statusline=1
 
 " custom syntax highlighting
 au BufRead,BufNewFile *.pyi set filetype=python
+au BufRead,BufNewFile *.mylog set filetype=diff

@@ -28,6 +28,8 @@ alias eg++='g++ -D EKLAVYA --std=c++11 -Wall -Wpedantic -Wno-sign-compare'
 alias egcc='gcc -D EKLAVYA -Wall -Wpedantic -Wno-sign-compare'
 
 alias nless='less -N'
+alias today='date +%F'
+alias logit='vim ~/mylog/$(today).mylog'
 
 # functions
 
