@@ -18,6 +18,10 @@ fi
 
 # constants
 
+if [ -d ~/.rlwrap ]; then
+    export RLWRAP_HOME="$HOME/.rlwrap"
+fi
+
 export WORKON_HOME='/mnt/code/venvs/'
 
 # set tab stops to 4 characters
