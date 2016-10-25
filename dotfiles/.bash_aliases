@@ -16,6 +16,10 @@ if [ -d "$HOME/ext_bin" ] ; then
     PATH="$HOME/ext_bin:$PATH"
 fi
 
+# constants
+
+export WORKON_HOME='/mnt/code/venvs/'
+
 # set tab stops to 4 characters
 tabs -4
 
