@@ -45,6 +45,13 @@ function prompt_command()
         PS1+="($venv_name)"
     fi
 
+    # add a '*' if dotfiles have changed
+    if [ -d "$DOTFILES_DIR" ]; then
+        if [ "$(git -C "$DOTFILES_DIR" status --porcelain)" ]; then
+            PS1+='*'
+        fi
+    fi
+
     # add exit status
     if [ "$EXIT" != 0 ]; then
         PS1+="${Red}($EXIT)${RCol}"
