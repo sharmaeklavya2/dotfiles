@@ -4,6 +4,9 @@
 # other things as well, since it is sourced in Ubuntu's default .bashrc.
 
 # include other files
+if [ -f ~/.env ]; then
+    source "$HOME/.env"
+fi
 if [ -f ~/.eku/myprompt ]; then
     source ~/.eku/myprompt
 fi
@@ -21,8 +24,6 @@ fi
 if [ -d ~/.rlwrap ]; then
     export RLWRAP_HOME="$HOME/.rlwrap"
 fi
-
-export WORKON_HOME='/mnt/code/venvs/'
 
 # set tab stops to 4 characters
 tabs -4
