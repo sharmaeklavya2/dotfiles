@@ -21,4 +21,4 @@ os.chdir(TARGET_DIR)
 
 print("Cloning repositories ...")
 for repo_url in repo_urls:
-    subprocess.check_call(['git', 'clone', '--depth=1', repo_url])
+    subprocess.check_call(['git', 'clone', '--recursive', '--depth=1', repo_url])
