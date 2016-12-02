@@ -43,7 +43,7 @@ alias logit='vim ~/mylog/$(today).mylog'
 # functions
 
 function mydiff(){
-    colordiff -u $@ | less -R
+    colordiff -u "$@" | less -R
 }
 
 # fast goto: cd to a nautilus bookmark
