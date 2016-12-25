@@ -33,8 +33,10 @@ tabs -4
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
-alias eg++='g++ -D EKLAVYA --std=c++11 -Wall -Wpedantic -Wno-sign-compare'
-alias egcc='gcc -D EKLAVYA -Wall -Wpedantic -Wno-sign-compare'
+alias g++11='g++ -std=c++11'
+alias g++14='g++ -std=c++14'
+alias eg++='g++ -D EKLAVYA -std=c++11 -g -Wall -Wpedantic -Wno-sign-compare'
+alias egcc='gcc -D EKLAVYA -std=c11 -g -Wall -Wpedantic -Wno-sign-compare'
 
 alias nless='less -N'
 alias today='date +%F'
