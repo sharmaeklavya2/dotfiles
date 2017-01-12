@@ -33,7 +33,7 @@ let g:solarized_termtrans=1
 colorscheme solarized
 
 " airline
-let g:airline_powerline_fonts=1
+" let g:airline_powerline_fonts=1
 let g:airline_exclude_preview=1
 set laststatus=2
 let g:ctags_statusline=1
