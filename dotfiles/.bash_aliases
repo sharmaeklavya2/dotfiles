@@ -18,6 +18,9 @@ fi
 if [ -d "$HOME/ext_bin" ] ; then
     PATH="$HOME/ext_bin:$PATH"
 fi
+if [ -d "/opt/apache-maven" ] ; then
+    PATH="$PATH:/opt/apache-maven/bin"
+fi
 
 # constants
 
