@@ -13,13 +13,13 @@ fi
 if [ -f ~/.eku/guify ]; then
     source ~/.eku/guify
 fi
+if [ -f ~/.eku/progs ]; then
+    source ~/.eku/progs
+fi
 
 # additions to PATH
 if [ -d "$HOME/ext_bin" ] ; then
     PATH="$HOME/ext_bin:$PATH"
-fi
-if [ -d "/opt/apache-maven" ] ; then
-    PATH="$PATH:/opt/apache-maven/bin"
 fi
 
 # constants
