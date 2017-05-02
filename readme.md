@@ -1,9 +1,10 @@
 # dotfiles
 
-Tested on Ubuntu 15.10.
+Tested on Ubuntu 16.04.
 
-This repository does not contain all my dotfiles.
-So just copying them all to your home folder might not work as expected.
+Running `scripts/make_links.py` will create symbolic links to my dotfiles
+in a directory `_links`. Copy them and paste them in your home directory.
 
-There are files which are not executable, yet they have a shebang.
-That is just to enable syntax highlighting in my text editors.
+Running `scripts/get_vim_packages.py` will create a `.vim/bundle` directory
+and clone all repositories mentioned in `vimpackages.txt`.
+Make a symlink of the `.vim` directory and place it in your home directory.
