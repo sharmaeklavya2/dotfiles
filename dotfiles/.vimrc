@@ -3,7 +3,8 @@ set cursorline "highlight current line
 set number "line numbering
 set relativenumber
 set hlsearch
-set clipboard=unnamedplus
+set clipboard=unnamed
+set backspace=indent,eol,start
 
 " indentation and tabs
 set expandtab
