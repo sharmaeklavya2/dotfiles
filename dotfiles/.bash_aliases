@@ -33,9 +33,6 @@ tabs -4
 
 # alises
 
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
-
 alias g++11='g++ -std=c++11'
 alias g++14='g++ -std=c++14'
 alias eg++='g++ -D EKLAVYA -std=c++11 -g -Wall -Wpedantic -Wno-sign-compare'
