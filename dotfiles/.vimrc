@@ -4,6 +4,7 @@ set number "line numbering
 set relativenumber
 set hlsearch
 set clipboard=unnamedplus
+set wrap lbr
 
 " indentation and tabs
 set expandtab
