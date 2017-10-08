@@ -42,6 +42,7 @@ let g:ctags_statusline=1
 " spell check
 autocmd FileType text set spell spelllang=en_us
 autocmd FileType markdown set spell spelllang=en_us
+autocmd FileType tex set spell spelllang=en_us
 
 " custom syntax highlighting
 au BufRead,BufNewFile *.pyi set filetype=python
