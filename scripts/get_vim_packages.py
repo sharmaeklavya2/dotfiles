@@ -7,7 +7,7 @@ import subprocess
 
 BASE_DIR = dirname(dirname(abspath(__file__)))
 LIST_FILE = os.path.join(BASE_DIR, "vimpackages.txt")
-TARGET_DIR = os.path.join(BASE_DIR, ".vim", "bundle")
+TARGET_DIR = os.path.join(BASE_DIR, "vim_bundle")
 
 repo_urls = open(LIST_FILE).read().split()
 

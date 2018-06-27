@@ -3,7 +3,10 @@ __pycache__/
 /_links/
 /readme.html
 *.sw[po]
-/.vim
+/vim_bundle
+/vim_bundle/
+/secret
+/secret/
 
 Thumbs.db
 *~
