@@ -10,12 +10,6 @@ fi
 if [ -f ~/.eku/myprompt ]; then
     source ~/.eku/myprompt
 fi
-if [ -f ~/.eku/guify ]; then
-    source ~/.eku/guify
-fi
-if [ -f ~/.eku/progs ]; then
-    source ~/.eku/progs
-fi
 if [ -f ~/.eku/gcc_aliases ]; then
     source ~/.eku/gcc_aliases
 fi
