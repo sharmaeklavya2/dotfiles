@@ -59,3 +59,7 @@ function fgoto(){
         fi
     fi
 }
+
+function workon() {
+    source "$VENV_DIR/$1/bin/activate"
+}
