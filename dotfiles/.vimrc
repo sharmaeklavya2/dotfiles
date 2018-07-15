@@ -5,6 +5,7 @@ set relativenumber
 set hlsearch
 set clipboard=unnamedplus
 set wrap lbr
+set backspace=indent,eol,start
 
 " indentation and tabs
 set expandtab

@@ -3,6 +3,8 @@
 # Even though .bash_aliases is meant to store aliases, I'm using it for
 # other things as well, since it is sourced in Ubuntu's default .bashrc.
 
+UNAME="$(uname)"
+
 # include other files
 if [ -f ~/.env ]; then
     source "$HOME/.env"
@@ -15,6 +17,9 @@ if [ -f ~/.eku/gcc_aliases ]; then
 fi
 
 # additions to PATH
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
 if [ -d "$HOME/ext_bin" ] ; then
     PATH="$HOME/ext_bin:$PATH"
 fi
@@ -30,34 +35,32 @@ tabs -4
 
 # alises
 
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+type -t xclip > /dev/null
+export HAS_XCLIP="$?"
+type -t pbcopy > /dev/null
+export HAS_PBCOPY="$?"
+type -t pbpaste > /dev/null
+export HAS_PBPASTE="$?"
+if [ "$HAS_XCLIP" -a ! "$HAS_PBCOPY" ]; then
+    alias pbcopy='xclip -selection clipboard'
+fi
+if [ "$HAS_XCLIP" -a ! "$HAS_PBPASTE" ]; then
+    alias pbpaste='xclip -selection clipboard -o'
+fi
 
 alias nless='less -N'
 alias today='date "+%F"'
 alias yesterday='date -d "yesterday" "+%F"'
 alias logit='vim ~/mylog/$(today).mylog'
 alias logyes='vim ~/mylog/$(yesterday).mylog'
+if [ "$UNAME" == Darwin ]; then
+    export CLICOLOR=1
+fi
 
 # functions
 
 function mydiff(){
     colordiff -u "$@" | less -R
-}
-
-# fast goto: cd to a nautilus bookmark
-function fgoto(){
-    if [ -z "$1" ]; then
-        echo "You must specify a bookmark name." 1>&2
-        false
-    else
-        newpath=$(bkmrk.py "$1")
-        if [ "$?" == "0" ]; then
-            cd "$newpath"
-        else
-            false
-        fi
-    fi
 }
 
 function workon() {
