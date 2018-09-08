@@ -17,9 +17,9 @@ if [ -f ~/.git-prompt.sh ]; then
     source ~/.git-prompt.sh
 fi
 
-GIT_PS1_SHOWDIRTYSTATE='blah'
-GIT_PS1_SHOWUNTRACKEDFILES='blah'
-GIT_PS1_SHOWCOLORHINTS='blah'
+GIT_PS1_SHOWDIRTYSTATE=''
+GIT_PS1_SHOWUNTRACKEDFILES=''
+GIT_PS1_SHOWCOLORHINTS=''
 
 export RCol='\[\e[0m\]'
 export Red='\[\e[0;31m\]'
@@ -46,10 +46,12 @@ function prompt_command()
     fi
 
     # add a '*' if dotfiles have changed
-    if [ -d "$DOTFILES_DIR" ]; then
-        if [ "$(git -C "$DOTFILES_DIR" status --porcelain)" ]; then
+    if [ -n "$TRACK_DOTFILES" ] && [ -d "$DOTFILES_DIR" ]; then
+        pushd "$DOTFILES_DIR" > /dev/null
+        if ! git diff --quiet --ignore-submodules HEAD ; then
             PS1+='*'
         fi
+        popd > /dev/null
     fi
 
     # add exit status
@@ -63,7 +65,9 @@ function prompt_command()
     PS1+="$1"
 
     # add git prompt
-    PS1+="\$(__git_ps1)"
+    if [ -d ".git" ]; then
+        PS1+="\$(__git_ps1)"
+    fi
 
     # add '$' for user and '#' for superuser
     if [ "$UID" == "0" ]; then
