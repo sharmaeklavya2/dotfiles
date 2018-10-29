@@ -50,11 +50,13 @@ fi
 
 alias nless='less -N'
 alias today='date "+%F"'
-alias yesterday='date -d "yesterday" "+%F"'
 alias logit='vim ~/mylog/$(today).mylog'
 alias logyes='vim ~/mylog/$(yesterday).mylog'
 if [ "$UNAME" == Darwin ]; then
     export CLICOLOR=1
+    alias yesterday='date -j -v-1d "+%F"'
+else
+    alias yesterday='date -d "yesterday" "+%F"'
 fi
 
 # functions
