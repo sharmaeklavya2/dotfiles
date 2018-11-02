@@ -26,6 +26,9 @@ fi
 
 # constants
 
+if command -v vim > /dev/null ; then
+    export EDITOR='vim'
+fi
 if [ -d ~/.rlwrap ]; then
     export RLWRAP_HOME="$HOME/.rlwrap"
 fi
