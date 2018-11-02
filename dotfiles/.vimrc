@@ -47,6 +47,9 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.pyi set filetype=python
     autocmd BufRead,BufNewFile *.mylog set filetype=diff
     autocmd BufRead,BufNewFile *.cleaver set filetype=markdown
+
+    " call flake8 on saving file
+    autocmd BufWritePost *.py call Flake8()
 endif
 
 filetype plugin on  " https://github.com/nvie/vim-flake8/issues/13#issuecomment-161026086
@@ -59,7 +62,9 @@ if has("eval")
     " airline
     " let g:airline_powerline_fonts=1  " use better fonts
     let g:airline_exclude_preview=1  " Make airline usable with jedi-vim
+
     let g:ctags_statusline=1
+    let g:flake8_show_in_gutter=1
 endif
 
 " enable pathogen
