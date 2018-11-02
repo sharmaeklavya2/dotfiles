@@ -49,6 +49,8 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.cleaver set filetype=markdown
 endif
 
+filetype plugin on  " https://github.com/nvie/vim-flake8/issues/13#issuecomment-161026086
+
 if has("eval")
     " solarized
     let g:solarized_termtrans=1  " use transparent background
