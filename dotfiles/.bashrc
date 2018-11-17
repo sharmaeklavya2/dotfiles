@@ -20,6 +20,12 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+if [ -d "$HOME/bin2" ] ; then
+    PATH="$HOME/bin2:$PATH"
+fi
+if [ -d "$HOME/bin3" ] ; then
+    PATH="$HOME/bin3:$PATH"
+fi
 if [ -d "$HOME/ext_bin" ] ; then
     PATH="$HOME/ext_bin:$PATH"
 fi
