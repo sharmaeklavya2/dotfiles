@@ -38,6 +38,9 @@ fi
 if [ -d ~/.rlwrap ]; then
     export RLWRAP_HOME="$HOME/.rlwrap"
 fi
+if [ -d ~/.nvm ]; then
+    export NVM_DIR="$HOME/.nvm"
+fi
 
 # set tab stops to 4 characters
 tabs -4
