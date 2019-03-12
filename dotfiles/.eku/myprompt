@@ -44,6 +44,10 @@ function prompt_command()
         local venv_name=$(basename "$VIRTUAL_ENV")
         PS1+="($venv_name)"
     fi
+    if [ -n "$CONDA_PREFIX" ]; then
+        local conda_name=$(basename "$CONDA_PREFIX")
+        PS1+="($conda_name)"
+    fi
 
     # add a '*' if dotfiles have changed
     if [ -n "$TRACK_DOTFILES" ] && [ -d "$DOTFILES_DIR" ]; then
