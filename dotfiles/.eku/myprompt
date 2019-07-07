@@ -70,7 +70,9 @@ function prompt_command()
 
     # add git prompt
     if [ -d ".git" ]; then
-        PS1+="\$(__git_ps1)"
+        if command -v __git_ps1 ; then
+            PS1+="\$(__git_ps1)"
+        fi
     fi
 
     # add '$' for user and '#' for superuser
