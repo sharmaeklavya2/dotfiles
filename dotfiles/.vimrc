@@ -68,6 +68,5 @@ if has("eval")
 endif
 
 " enable pathogen
-silent! python3 pass  " https://github.com/Valloric/YouCompleteMe/issues/3062
 silent! execute pathogen#infect()
 silent! colorscheme solarized
