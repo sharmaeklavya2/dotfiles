@@ -1,12 +1,13 @@
+dotfiles/.config/htop
+dotfiles/.config/configstore
+
 *.pyc
-__pycache__/
-/_links/
+__pycache__
+/_links
 /readme.html
 *.sw[po]
 /vim_bundle
-/vim_bundle/
 /secret
-/secret/
 
 Thumbs.db
 *~
