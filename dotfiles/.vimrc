@@ -5,6 +5,7 @@ set relativenumber  " show relative line numbers
 set hlsearch  " highlight search matches
 set wrap lbr  " soft wrap lines but don't break words
 set backspace=indent,eol,start  " make backspace key work as expected
+set ttimeoutlen=2  " don't pause on Esc key: https://www.reddit.com/r/vim/comments/86034o/_/dw1dzdu/
 
 " indentation and tabs
 set expandtab
