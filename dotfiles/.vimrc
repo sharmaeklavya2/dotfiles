@@ -47,6 +47,7 @@ if has("autocmd")
     " custom syntax highlighting
     autocmd BufRead,BufNewFile *.pyi set filetype=python
     autocmd BufRead,BufNewFile *.mylog set filetype=diff
+    autocmd BufRead,BufNewFile *.html.jinja2 set filetype=htmldjango
     autocmd BufRead,BufNewFile *.cleaver set filetype=markdown
 
     " call flake8 on saving file
