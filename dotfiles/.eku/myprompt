@@ -39,6 +39,11 @@ function prompt_command()
     local EXIT="$?"
     PS1=""
 
+    # show current time
+    if [ -z "$NO_SHOW_TIME_IN_PROMPT" ]; then
+        PS1+="[$(date +%H:%M:%S)]"
+    fi
+
     # add virtualenv name
     if [ -n "$VIRTUAL_ENV" ]; then
         local venv_name=$(basename "$VIRTUAL_ENV")
