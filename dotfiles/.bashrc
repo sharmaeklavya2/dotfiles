@@ -71,6 +71,13 @@ else
     alias yesterday='date -d "yesterday" "+%F"'
 fi
 
+MY_TEX_OPTIONS='-cnf-line "max_print_line = 10000" -halt-on-error'
+alias mypdftex="pdftex ${MY_TEX_OPTIONS}"
+alias mypdflatex="pdflatex ${MY_TEX_OPTIONS}"
+alias myluatex="luatex ${MY_TEX_OPTIONS}"
+alias mylualatex="lualatex ${MY_TEX_OPTIONS}"
+alias myxelatex="xelatex ${MY_TEX_OPTIONS}"
+
 # functions
 
 function mydiff(){
