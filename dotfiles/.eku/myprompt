@@ -74,7 +74,7 @@ function prompt_command()
     PS1+="$1"
 
     # add git prompt
-    if [ -d ".git" ] || [ -d "../.git" ]; then
+    if [ -d ".git" ] || [ -d "../.git" ] || [ -d "../../.git" ]; then
         if command -v __git_ps1 > /dev/null ; then
             PS1+="\$(__git_ps1)"
         fi
