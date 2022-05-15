@@ -6,12 +6,12 @@ EKU_GPP_FLAGS="$EKU_GCC_FLAGS"
 alias  g++03='g++ -std=c++03'
 alias  g++11='g++ -std=c++11'
 alias  g++14='g++ -std=c++14'
-alias  g++17='g++ -std=c++1z'
+alias  g++17='g++ -std=c++17'
 alias   eg++="g++ -std=c++11 $EKU_GPP_FLAGS"
 alias eg++03="g++ -std=c++03 $EKU_GPP_FLAGS"
 alias eg++11="g++ -std=c++11 $EKU_GPP_FLAGS"
 alias eg++14="g++ -std=c++14 $EKU_GPP_FLAGS"
-alias eg++17="g++ -std=c++1z $EKU_GPP_FLAGS"
+alias eg++17="g++ -std=c++17 $EKU_GPP_FLAGS"
 
 alias  gcc90='gcc -std=c90'
 alias  gcc99='gcc -std=c99'
@@ -20,4 +20,5 @@ alias   egcc="gcc $EKU_GCC_FLAGS"
 alias egcc90="gcc -std=c90 $EKU_GCC_FLAGS"
 alias egcc99="gcc -std=c99 $EKU_GCC_FLAGS"
 alias egcc11="gcc -std=c11 $EKU_GCC_FLAGS"
+alias egcc11="gcc -std=c17 $EKU_GCC_FLAGS"
 
