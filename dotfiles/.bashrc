@@ -79,7 +79,7 @@ alias mypdflatex="pdflatex ${MY_TEX_OPTIONS}"
 alias myluatex="luatex ${MY_TEX_OPTIONS}"
 alias mylualatex="lualatex ${MY_TEX_OPTIONS}"
 alias myxelatex="xelatex ${MY_TEX_OPTIONS}"
-alias texclean='rm -f *.{aux,bbl,blg,log,out,toc,brf,lot,lof,nlo,add.spl}'
+alias tex-clean='rm -f *.{aux,bbl,blg,log,out,toc,brf,lot,lof,nlo,add.spl}'
 
 # functions
 
