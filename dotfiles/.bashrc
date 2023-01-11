@@ -45,7 +45,7 @@ fi
 # set tab stops to 4 characters
 tabs -4
 
-# alises
+# aliases
 
 type -t xclip > /dev/null
 export HAS_XCLIP="$?"
