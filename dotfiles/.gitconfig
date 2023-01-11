@@ -1,7 +1,9 @@
 [user]
-	name = Eklavya Sharma
-	email = ekurgn@gmail.com
+    name = Eklavya Sharma
+    email = ekurgn@gmail.com
 [color]
-	ui = true
+    ui = true
 [core]
-	pager = less -+FSX
+    pager = diffr | less -+FSX
+[interactive]
+    diffFilter = diffr
