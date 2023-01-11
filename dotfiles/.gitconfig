@@ -4,6 +4,4 @@
 [color]
     ui = true
 [core]
-    pager = diffr | less -+FSX
-[interactive]
-    diffFilter = diffr
+    pager = less -+FSX

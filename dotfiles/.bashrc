@@ -81,6 +81,12 @@ alias mylualatex="lualatex ${MY_TEX_OPTIONS}"
 alias myxelatex="xelatex ${MY_TEX_OPTIONS}"
 alias tex-clean='rm -f *.{aux,bbl,blg,log,out,toc,brf,lot,lof,nlo,add.spl}'
 
+if command -v diffr > /dev/null ; then
+    export GIT_PAGER="diffr | less -+FSX"
+else
+    unset GIT_PAGER
+fi
+
 # functions
 
 function mydiff(){
