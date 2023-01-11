@@ -84,7 +84,13 @@ alias tex-clean='rm -f *.{aux,bbl,blg,log,out,toc,brf,lot,lof,nlo,add.spl}'
 # functions
 
 function mydiff(){
-    colordiff -u "$@" | less -R
+    if command -v diffr ; then
+        diff -u "$@" | diffr | less -R
+    elif command -v colordiff ; then
+        colordiff -u "$@" | less -R
+    else
+        diff -u "$@" | less -R
+    fi
 }
 
 function workon() {
