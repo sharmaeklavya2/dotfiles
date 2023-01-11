@@ -30,6 +30,10 @@ if [ -d "$HOME/ext_bin" ] ; then
     PATH="$HOME/ext_bin:$PATH"
 fi
 
+function workon() {
+    source "$VENV_DIR/$1/bin/activate"
+}
+
 # constants
 
 if command -v vim > /dev/null ; then
@@ -41,6 +45,29 @@ fi
 if [ -d ~/.nvm ]; then
     export NVM_DIR="$HOME/.nvm"
 fi
+
+# pagers and diffing
+
+export LESS="-R -+FSX"
+export DELTA_PAGER="less $LESS"
+
+if command -v delta > /dev/null ; then
+    export GIT_PAGER="delta"
+elif command -v diffr > /dev/null ; then
+    export GIT_PAGER="diffr | less"
+else
+    unset GIT_PAGER
+fi
+
+function mydiff(){
+    if command -v diffr ; then
+        diff -u "$@" | diffr | less -R
+    elif command -v colordiff ; then
+        colordiff -u "$@" | less -R
+    else
+        diff -u "$@" | less -R
+    fi
+}
 
 # set tab stops to 4 characters
 tabs -4
@@ -80,25 +107,3 @@ alias myluatex="luatex ${MY_TEX_OPTIONS}"
 alias mylualatex="lualatex ${MY_TEX_OPTIONS}"
 alias myxelatex="xelatex ${MY_TEX_OPTIONS}"
 alias tex-clean='rm -f *.{aux,bbl,blg,log,out,toc,brf,lot,lof,nlo,add.spl}'
-
-if command -v diffr > /dev/null ; then
-    export GIT_PAGER="diffr | less -+FSX"
-else
-    unset GIT_PAGER
-fi
-
-# functions
-
-function mydiff(){
-    if command -v diffr ; then
-        diff -u "$@" | diffr | less -R
-    elif command -v colordiff ; then
-        colordiff -u "$@" | less -R
-    else
-        diff -u "$@" | less -R
-    fi
-}
-
-function workon() {
-    source "$VENV_DIR/$1/bin/activate"
-}

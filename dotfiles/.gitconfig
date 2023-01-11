@@ -3,5 +3,3 @@
     email = ekurgn@gmail.com
 [color]
     ui = true
-[core]
-    pager = less -+FSX
