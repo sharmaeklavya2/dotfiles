@@ -29,6 +29,12 @@ fi
 if [ -d "$HOME/ext_bin" ] ; then
     PATH="$HOME/ext_bin:$PATH"
 fi
+if [ "$UNAME" == Darwin ]; then
+    export VSCODE_BIN='/Applications/Visual Studio Code.app/Contents/Resources/app/bin'
+    if [ -d "$VSCODE_BIN" ]; then
+        PATH="$PATH:$VSCODE_BIN"
+    fi
+fi
 
 function workon() {
     source "$VENV_DIR/$1/bin/activate"
