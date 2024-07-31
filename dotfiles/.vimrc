@@ -17,7 +17,6 @@ set autoindent
 if has("syntax")
     syntax enable  " enable syntax highlighting
 endif
-set background=dark  " assume dark background for syntax highlighting
 set laststatus=2  " always show status line
 
 " yank to clipboard
@@ -69,6 +68,19 @@ if has("eval")
 
     let g:ctags_statusline=1
     let g:flake8_show_in_gutter=1
+
+    " set background based on system theme
+    function! SetBackground(channel, msg)
+        let theme = trim(a:msg)
+        if theme ==? "light"
+            set background=light
+        elseif theme==? "dark"
+            set background=dark
+        endif
+    endfunction
+    if executable("python3")
+        let job = job_start(["python3", "-c", "import darkdetect; print(darkdetect.theme())"], {"out_cb": "SetBackground"})
+    endif
 endif
 
 " enable pathogen
