@@ -20,5 +20,4 @@ alias   egcc="gcc $EKU_GCC_FLAGS"
 alias egcc90="gcc -std=c90 $EKU_GCC_FLAGS"
 alias egcc99="gcc -std=c99 $EKU_GCC_FLAGS"
 alias egcc11="gcc -std=c11 $EKU_GCC_FLAGS"
-alias egcc11="gcc -std=c17 $EKU_GCC_FLAGS"
-
+alias egcc17="gcc -std=c17 $EKU_GCC_FLAGS"
