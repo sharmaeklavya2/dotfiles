@@ -23,7 +23,7 @@ def makeLink(src, dst, dryRun=False):
                 print('{}: could not symlink {} to {}'.format(e.strerror, src, dst), file=sys.stderr)
 
 
-def makeAllLinks(sourceDir, targetDir, dryRun=False):
+def makeAllLinks(sourceDir, targetDir, linkDirs, dryRun=False):
     """Finds all files (not directories) in sourceDir and makes symlinks to them in targetDir."""
     if dryRun:
         print('> mkdir', targetDir)
@@ -38,7 +38,7 @@ def makeAllLinks(sourceDir, targetDir, dryRun=False):
     for fname in os.listdir(sourceDir):
         sfpath = pjoin(sourceDir, fname)
         tfpath = pjoin(targetDir, fname)
-        if os.path.isfile(sfpath):
+        if linkDirs or os.path.isfile(sfpath):
             makeLink(sfpath, tfpath, dryRun)
 
 
@@ -52,9 +52,9 @@ def main():
     dotfilesDir = pjoin(dirname(dirname(abspath(__file__))), 'dotfiles')
     outDir = args.o or os.environ['HOME']
 
-    makeAllLinks(dotfilesDir, outDir, args.dry_run)
-    makeLink(pjoin(dotfilesDir, '.eku'), pjoin(outDir, '.eku'), args.dry_run)
-    makeAllLinks(pjoin(dotfilesDir, '.config'), pjoin(outDir, '.config'), args.dry_run)
+    makeAllLinks(dotfilesDir, outDir, linkDirs=False, dryRun=args.dry_run)
+    makeLink(pjoin(dotfilesDir, '.eku'), pjoin(outDir, '.eku'), dryRun=args.dry_run)
+    makeAllLinks(pjoin(dotfilesDir, '.config'), pjoin(outDir, '.config'), linkDirs=True, dryRun=args.dry_run)
 
 
 if __name__ == '__main__':
