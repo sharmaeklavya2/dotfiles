@@ -90,9 +90,6 @@ if has("eval")
     endif
 endif
 
-" enable pathogen
-silent! execute pathogen#infect()
-
 silent! colorscheme solarized
 
 " set termguicolors
