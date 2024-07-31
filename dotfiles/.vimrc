@@ -80,6 +80,7 @@ if has("eval")
     endfunction
     if executable("python3")
         let job = job_start(["python3", "-c", "import darkdetect; print(darkdetect.theme())"], {"out_cb": "SetBackground"})
+        " https://github.com/albertosottile/darkdetect
     endif
 endif
 
