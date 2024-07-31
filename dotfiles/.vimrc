@@ -85,4 +85,8 @@ endif
 
 " enable pathogen
 silent! execute pathogen#infect()
+
 silent! colorscheme solarized
+
+" set termguicolors
+" silent! colorscheme one
