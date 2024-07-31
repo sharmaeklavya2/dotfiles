@@ -2,10 +2,14 @@ set scrolloff=8  " start scrolling screen a few lines before cursor reaches end 
 set cursorline  " highlight current line
 set number  " line numbering
 set relativenumber  " show relative line numbers
-set hlsearch  " highlight search matches
 set wrap lbr  " soft wrap lines but don't break words
-set backspace=indent,eol,start  " make backspace key work as expected
+set laststatus=2  " always show status line
+
 set ttimeoutlen=2  " don't pause on Esc key: https://www.reddit.com/r/vim/comments/86034o/_/dw1dzdu/
+set hlsearch  " highlight search matches
+set backspace=indent,eol,start  " make backspace key work as expected
+set ignorecase
+set smartcase  " but make it case sensitive if an uppercase is entered
 
 " indentation and tabs
 set expandtab
@@ -17,7 +21,6 @@ set autoindent
 if has("syntax")
     syntax enable  " enable syntax highlighting
 endif
-set laststatus=2  " always show status line
 
 " yank to clipboard
 if has("clipboard")
@@ -25,6 +28,9 @@ if has("clipboard")
     if has("unnamedplus")
         set clipboard+=unnamedplus
     endif
+endif
+if has("mouse")
+    set mouse=nvi  " enable mouse use
 endif
 
 if has("autocmd")
