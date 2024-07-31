@@ -3,8 +3,10 @@ __pycache__
 /_links
 /readme.html
 *.sw[po]
-/vim_bundle
+/vim_packages
 /secret
+
+/dotfiles/.config/nvim/lazy-lock.json
 
 Thumbs.db
 *~
