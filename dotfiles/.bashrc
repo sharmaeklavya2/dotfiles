@@ -66,9 +66,9 @@ else
 fi
 
 function mydiff(){
-    if command -v diffr ; then
+    if command -v diffr > /dev/null ; then
         diff -u "$@" | diffr | less -R
-    elif command -v colordiff ; then
+    elif command -v colordiff > /dev/null ; then
         colordiff -u "$@" | less -R
     else
         diff -u "$@" | less -R
