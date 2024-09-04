@@ -106,7 +106,7 @@ else
     alias yesterday='date -d "yesterday" "+%F"'
 fi
 
-MY_TEX_OPTIONS='-cnf-line "max_print_line = 10000" -halt-on-error'
+MY_TEX_OPTIONS='-cnf-line "max_print_line = 10000" -halt-on-error -interaction=nonstopmode -file-line-error'
 alias mypdftex="pdftex ${MY_TEX_OPTIONS}"
 alias mypdflatex="pdflatex ${MY_TEX_OPTIONS}"
 alias myluatex="luatex ${MY_TEX_OPTIONS}"
