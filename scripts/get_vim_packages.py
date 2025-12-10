@@ -26,11 +26,11 @@ def cloneRepo(repoUrl, dryRun):
     repoName = repoUrl.rsplit('/', 1)[-1]
 
     if os.path.exists(repoName):
-        print('repo {} already exists')
+        print('repo {} already exists'.format(repoName))
     else:
         command = ['git', 'clone', '--recursive', '--depth=1', repoUrl]
         if dryRun:
-            print('>', ' '.join(command))
+            print('$', ' '.join(command))
         else:
             subprocess.check_call(command)
 
@@ -44,11 +44,10 @@ def main():
     with open(LIST_FILE) as fp:
         repoUrls = fp.readlines()
 
-    try:
-        os.makedirs(TARGET_DIR)
-    except OSError as e:
-        if e.errno != errno.EEXIST or not os.path.isdir(TARGET_DIR):
-            raise
+    if args.dry_run:
+        print('$ mkdir -p', TARGET_DIR)
+        print('$ cd', TARGET_DIR)
+    os.makedirs(TARGET_DIR, exist_ok=True)
     os.chdir(TARGET_DIR)
 
     for repoUrl in repoUrls:
