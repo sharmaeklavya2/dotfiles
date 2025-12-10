@@ -1,4 +1,4 @@
 [flake8]
-max-line-length = 99
+max-line-length = 120
 hang-closing = True
 ignore = E501,E124,E128,E133,E226,W503,W504

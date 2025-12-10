@@ -99,6 +99,7 @@ alias logit='vim ~/mylogs/activity/$(today).mylog'
 alias logyes='vim ~/mylogs/activity/$(yesterday).mylog'
 alias medlogit='vim ~/mylogs/medical/$(today).txt'
 alias medlogyes='vim ~/mylogs/medical/$(yesterday).txt'
+alias weightlogit='vim ~/mylogs/weight.csv'
 if [ "$UNAME" == Darwin ]; then
     export CLICOLOR=1
     alias yesterday='date -j -v-1d "+%F"'

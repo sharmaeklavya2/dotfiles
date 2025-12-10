@@ -29,9 +29,9 @@ if has("clipboard")
         set clipboard+=unnamedplus
     endif
 endif
-if has("mouse")
-    set mouse=nvi  " enable mouse use
-endif
+" if has("mouse")
+    " set mouse=nvi  " enable mouse use
+" endif
 
 if has("autocmd")
     " check if file has been modified outside vim
@@ -76,11 +76,12 @@ if has("eval")
     let g:flake8_show_in_gutter=1
 
     " set background based on system theme
+    set background=dark
     function! SetBackground(channel, msg)
         let theme = trim(a:msg)
         if theme ==? "light"
             set background=light
-        elseif theme==? "dark"
+        elseif theme ==? "dark"
             set background=dark
         endif
     endfunction
