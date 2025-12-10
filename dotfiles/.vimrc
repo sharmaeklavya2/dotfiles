@@ -94,7 +94,7 @@ if has("eval")
 endif
 
 if (has("termguicolors"))
-    set termguicolors
+    set termguicolors  " comment out if using solarized
 endif
 
 " https://github.com/morhetz/gruvbox/wiki/Installation
