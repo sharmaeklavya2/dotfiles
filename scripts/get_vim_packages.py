@@ -15,6 +15,8 @@ TARGET_DIR = os.path.join(HOME, '.vim/pack/default/start')
 
 
 def cloneRepo(repoUrl, dryRun):
+    repoUrl, *comments = repoUrl.split(' # ', 1)
+    repoUrl = repoUrl.strip()
     if len(repoUrl) == 0 or repoUrl[0] == '#':
         return
     if repoUrl[-4:] == '.git':
@@ -40,7 +42,7 @@ def main():
     args = parser.parse_args()
 
     with open(LIST_FILE) as fp:
-        repoUrls = [x.strip() for x in fp.readlines()]
+        repoUrls = fp.readlines()
 
     try:
         os.makedirs(TARGET_DIR)
