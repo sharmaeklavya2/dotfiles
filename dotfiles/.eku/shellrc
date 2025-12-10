@@ -1,0 +1,82 @@
+# constants
+UNAME="$(uname)"
+if command -v vim > /dev/null ; then
+    export EDITOR='vim'
+fi
+
+# include other files
+if [ -f ~/.env ]; then
+    source "$HOME/.env"
+fi
+if [ -f ~/.eku/aliases ]; then
+    source ~/.eku/aliases
+fi
+
+# modifications to PATH
+if [[ "$UNAME" == Darwin ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"  # have homebrew executables override macOS defaults by changing $PATH
+    export VSCODE_BIN='/Applications/Visual Studio Code.app/Contents/Resources/app/bin'
+    if [ -d "$VSCODE_BIN" ]; then
+        PATH="$PATH:$VSCODE_BIN"
+    fi
+fi
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+if [ -d "$HOME/bin2" ] ; then
+    PATH="$HOME/bin2:$PATH"
+fi
+if [ -d "$HOME/ext_bin" ] ; then
+    PATH="$HOME/ext_bin:$PATH"
+fi
+
+# change ls colors
+export CLICOLOR=1
+export LSCOLORS="gxfxbxdxcxegedabagacad"  # change directory color (first char) from blue (c) to cyan (g)
+
+# pagers and diffing
+export LESS="-R"
+export DELTA_PAGER="less $LESS"
+if command -v delta > /dev/null ; then
+    export GIT_PAGER="delta"
+elif command -v diffr > /dev/null ; then
+    export GIT_PAGER="diffr | less"
+else
+    unset GIT_PAGER
+fi
+
+if command -v diffr > /dev/null ; then
+    function mydiff() {
+        diff -u "$@" | diffr | less -R
+    }
+elif command -v colordiff > /dev/null ; then
+    function mydiff() {
+        colordiff -u "$@" | less -R
+    }
+else
+    function mydiff() {
+        diff -u "$@" | less -R
+    }
+fi
+
+# clipboard manipulation
+command -v xclip > /dev/null
+export HAS_XCLIP="$?"
+command -v pbcopy > /dev/null
+export HAS_PBCOPY="$?"
+command -v pbpaste > /dev/null
+export HAS_PBPASTE="$?"
+if [[ "$HAS_XCLIP" && ! "$HAS_PBCOPY" ]]; then
+    alias pbcopy='xclip -selection clipboard'
+fi
+if [[ "$HAS_XCLIP" && ! "$HAS_PBPASTE" ]]; then
+    alias pbpaste='xclip -selection clipboard -o'
+fi
+
+# Easily activate python virtualenvs. Set $VENV_DIR in ~/.env.
+function workon() {
+    source "$VENV_DIR/$1/bin/activate"
+}
+
+# misc
+tabs -4  # set tab stops to 4 characters

@@ -1,0 +1,31 @@
+# today and yesterday
+alias today='date "+%F"'
+if [[ "$UNAME" == Darwin ]]; then
+    alias yesterday='date -j -v-1d "+%F"'
+else
+    alias yesterday='date -d "yesterday" "+%F"'
+fi
+
+# logging
+alias logit='vim ~/mylogs/activity/$(today).mylog'
+alias logyes='vim ~/mylogs/activity/$(yesterday).mylog'
+alias medlogit='vim ~/mylogs/medical/$(today).txt'
+alias medlogyes='vim ~/mylogs/medical/$(yesterday).txt'
+alias weightlogit='vim ~/mylogs/weight.csv'
+
+# latex
+MY_TEX_OPTIONS='-cnf-line "max_print_line = 10000" -halt-on-error -interaction=nonstopmode -file-line-error'
+alias mypdftex="pdftex ${MY_TEX_OPTIONS}"
+alias mypdflatex="pdflatex ${MY_TEX_OPTIONS}"
+alias myluatex="luatex ${MY_TEX_OPTIONS}"
+alias mylualatex="lualatex ${MY_TEX_OPTIONS}"
+alias myxelatex="xelatex ${MY_TEX_OPTIONS}"
+alias tex-clean='rm -f *.{aux,bbl,blg,log,out,toc,brf,lot,lof,nlo,add.spl}'
+
+# gcc
+EKU_GCC_FLAGS='-D EKLAVYA -g -Wall -Wpedantic -Wno-sign-compare'
+EKU_GPP_FLAGS="$EKU_GCC_FLAGS"
+alias  g++11='g++ -std=c++11'
+alias   eg++="g++ -std=c++11 $EKU_GPP_FLAGS"
+alias  gcc11='gcc -std=c11'
+alias   egcc="gcc -std=c11 $EKU_GCC_FLAGS"

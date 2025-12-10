@@ -25,14 +25,16 @@ export RCol='\[\e[0m\]'
 export Red='\[\e[0;31m\]'
 export Gre='\[\e[0;32m\]'
 export Blu='\[\e[0;34m\]'
+export Cyn='\[\e[0;36m\]'
 export BRed='\[\e[1;31m\]'
 export BGre='\[\e[1;32m\]'
 export BBlu='\[\e[1;34m\]'
+export BCyn='\[\e[1;36m\]'
 
-export prompt_small="${Gre}\u@\h${RCol}:${Blu}\W${RCol}"
-export prompt_big="${Gre}\u@\h${RCol}:${Blu}\w${RCol}"
-export prompt_small_bold="${BGre}\u@\h${RCol}:${BBlu}\W${RCol}"
-export prompt_big_bold="${BGre}\u@\h${RCol}:${BBlu}\w${RCol}"
+export prompt_small="${Gre}\u@\h${RCol}:${Cyn}\W${RCol}"
+export prompt_big="${Gre}\u@\h${RCol}:${Cyn}\w${RCol}"
+export prompt_small_bold="${BGre}\u@\h${RCol}:${BCyn}\W${RCol}"
+export prompt_big_bold="${BGre}\u@\h${RCol}:${BCyn}\w${RCol}"
 
 function prompt_command()
 {

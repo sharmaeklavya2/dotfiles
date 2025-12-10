@@ -3,7 +3,5 @@
     email = ekurgn@gmail.com
 [color]
     ui = true
-[core]
-    pager = diffr | less -R
 [interactive]
     diffFilter = diffr
