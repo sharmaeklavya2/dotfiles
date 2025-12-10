@@ -11,6 +11,8 @@ export PROMPT='[%*]%(0?.%F{green}.%F{red})(%?)%f%F{green}%n@%m%f:%F{cyan}%1d%f $
 # have homebrew executables override macOS defaults by changing $PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+bindkey -e  # enable Ctrl+R and other niceties: https://unix.stackexchange.com/a/574740
+
 # history management # https://unix.stackexchange.com/a/273863
 HISTSIZE=100000
 SAVEHIST=100000
