@@ -7,3 +7,7 @@ fi
 if [ -f ~/.eku/bash_prompt ]; then
     source ~/.eku/bash_prompt
 fi
+
+# history management
+HISTSIZE=100000
+HISTCONTROL=ignoredups
