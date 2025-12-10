@@ -14,7 +14,7 @@ fi
 
 # modifications to PATH
 if [[ "$UNAME" == Darwin ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"  # have homebrew executables override macOS defaults by changing $PATH
+    eval "$(brew shellenv)"  # have homebrew executables override macOS defaults by changing $PATH
     export VSCODE_BIN='/Applications/Visual Studio Code.app/Contents/Resources/app/bin'
     if [ -d "$VSCODE_BIN" ]; then
         PATH="$PATH:$VSCODE_BIN"
