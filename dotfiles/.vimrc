@@ -58,26 +58,22 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.cleaver set filetype=markdown
 
     " call flake8 on saving file
-    autocmd BufWritePost *.py call Flake8()
+    if exists('*Flake8')
+        autocmd BufWritePost *.py call Flake8()
+    endif
 endif
 
 filetype plugin on  " https://github.com/nvie/vim-flake8/issues/13#issuecomment-161026086
 
 if has("eval")
-    " solarized
-    let g:solarized_termtrans=1  " use transparent background
-    " let g:solarized_termcolors=256
-
-    " airline
     " let g:airline_powerline_fonts=1  " use better fonts
     let g:airline_exclude_preview=1  " Make airline usable with jedi-vim
-
     let g:ctags_statusline=1
     let g:flake8_show_in_gutter=1
 
     " set background based on system theme
     set background=dark
-    function! SetBackground(channel, msg)
+    function! SetBackgroundFromInput(channel, msg)
         let theme = trim(a:msg)
         if theme ==? "light"
             set background=light
@@ -85,13 +81,25 @@ if has("eval")
             set background=dark
         endif
     endfunction
-    if executable("python3")
-        let job = job_start(["python3", "-c", "import darkdetect; print(darkdetect.theme())"], {"out_cb": "SetBackground"})
-        " https://github.com/albertosottile/darkdetect
-    endif
+    function! SetBackground()
+        if executable("python3")
+            let job = job_start(["python3", "-c", "import darkdetect; print(darkdetect.theme())"], {"out_cb": "SetBackgroundFromInput"})
+            " https://github.com/albertosottile/darkdetect
+        endif
+    endfunction
+    call SetBackground()
+
+    let g:gruvbox_italic=1  " https://github.com/morhetz/gruvbox/wiki/Terminal-specific
+    let g:one_allow_italics=1
 endif
 
-silent! colorscheme solarized
+if (has("termguicolors"))
+    set termguicolors
+endif
 
-" set termguicolors
+" https://github.com/morhetz/gruvbox/wiki/Installation
+" autocmd vimenter * ++nested colorscheme gruvbox
+silent! colorscheme gruvbox
+" silent! colorscheme solarized
 " silent! colorscheme one
+" call SetBackground()  " SetBackground must be called _after_ 'colorscheme one'
