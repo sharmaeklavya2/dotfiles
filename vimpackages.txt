@@ -1,7 +1,16 @@
-# https://github.com/vim-airline/vim-airline
-# https://github.com/vim-airline/vim-airline-themes
-https://github.com/altercation/vim-colors-solarized
-https://github.com/rakr/vim-one.git
-# https://github.com/tpope/vim-fugitive/
-# https://github.com/hdima/python-syntax
-https://github.com/nvie/vim-flake8
+# colorschemes
+# https://github.com/altercation/vim-colors-solarized
+https://github.com/lifepillar/vim-solarized8
+https://github.com/rakr/vim-one
+https://github.com/morhetz/gruvbox/
+
+# statusline
+https://github.com/vim-airline/vim-airline
+https://github.com/vim-airline/vim-airline-themes  # have airline switch colors based on colorscheme
+
+# language support
+https://github.com/nvie/vim-flake8  # python linting
+
+# misc
+# https://github.com/tpope/vim-fugitive  # provides `:Git blame`
+# https://github.com/psliwka/vim-smoothie  # smooth scrolling

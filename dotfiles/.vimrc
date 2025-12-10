@@ -4,6 +4,7 @@ set number  " line numbering
 set relativenumber  " show relative line numbers
 set wrap lbr  " soft wrap lines but don't break words
 set laststatus=2  " always show status line
+set signcolumn=yes  " always show the sign column
 
 set ttimeoutlen=2  " don't pause on Esc key: https://www.reddit.com/r/vim/comments/86034o/_/dw1dzdu/
 set hlsearch  " highlight search matches
@@ -70,6 +71,7 @@ if has("eval")
     let g:airline_exclude_preview=1  " Make airline usable with jedi-vim
     let g:ctags_statusline=1
     let g:flake8_show_in_gutter=1
+    let g:airline_extensions = []
 
     " set background based on system theme
     set background=dark
@@ -94,12 +96,12 @@ if has("eval")
 endif
 
 if (has("termguicolors"))
-    set termguicolors  " comment out if using solarized
+    set termguicolors
 endif
 
 " https://github.com/morhetz/gruvbox/wiki/Installation
 " autocmd vimenter * ++nested colorscheme gruvbox
-silent! colorscheme gruvbox
-" silent! colorscheme solarized
+" silent! colorscheme gruvbox
+silent! colorscheme solarized8
 " silent! colorscheme one
 " call SetBackground()  " SetBackground must be called _after_ 'colorscheme one'
