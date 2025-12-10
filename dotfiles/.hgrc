@@ -1,6 +1,0 @@
-[ui]
-username = Eklavya Sharma <ekurgn@gmail.com>
-
-[extensions]
-hgext.bookmarks =
-hggit =
