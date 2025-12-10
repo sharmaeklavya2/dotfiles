@@ -1,24 +1,57 @@
 #!/usr/bin/env python
 
+"""Clone repos from vimpackages.txt into vim's plugin directory."""
+
 import os
 import errno
 from os.path import dirname, abspath
 import subprocess
+import argparse
 
 BASE_DIR = dirname(dirname(abspath(__file__)))
 LIST_FILE = os.path.join(BASE_DIR, "vimpackages.txt")
-TARGET_DIR = os.path.join(BASE_DIR, "vim_packages")
+HOME = os.environ['HOME']
+TARGET_DIR = os.path.join(HOME, '.vim/pack/default/start')
 
-repo_urls = open(LIST_FILE).read().split()
 
-try:
-    os.makedirs(TARGET_DIR)
-except OSError as e:
-    if e.errno != errno.EEXIST or not os.path.isdir(TARGET_DIR):
-        raise
+def cloneRepo(repoUrl, dryRun):
+    if len(repoUrl) == 0 or repoUrl[0] == '#':
+        return
+    if repoUrl[-4:] == '.git':
+        repoUrl = repoUrl[:-4]
+    if repoUrl[-1] == '/':
+        repoUrl = repoUrl[:-1]
+    repoName = repoUrl.rsplit('/', 1)[-1]
 
-os.chdir(TARGET_DIR)
+    if os.path.exists(repoName):
+        print('repo {} already exists')
+    else:
+        command = ['git', 'clone', '--recursive', '--depth=1', repoUrl]
+        if dryRun:
+            print('>', ' '.join(command))
+        else:
+            subprocess.check_call(command)
 
-print("Cloning repositories ...")
-for repo_url in repo_urls:
-    subprocess.check_call(['git', 'clone', '--recursive', '--depth=1', repo_url])
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--dry-run', action='store_true', default=False,
+        help='output commands instead of running them')
+    args = parser.parse_args()
+
+    with open(LIST_FILE) as fp:
+        repoUrls = [x.strip() for x in fp.readlines()]
+
+    try:
+        os.makedirs(TARGET_DIR)
+    except OSError as e:
+        if e.errno != errno.EEXIST or not os.path.isdir(TARGET_DIR):
+            raise
+    os.chdir(TARGET_DIR)
+
+    for repoUrl in repoUrls:
+        cloneRepo(repoUrl, args.dry_run)
+
+
+if __name__ == '__main__':
+    main()

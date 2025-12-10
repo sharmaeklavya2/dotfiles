@@ -1,7 +1,7 @@
-https://github.com/vim-airline/vim-airline
-https://github.com/vim-airline/vim-airline-themes
+# https://github.com/vim-airline/vim-airline
+# https://github.com/vim-airline/vim-airline-themes
 https://github.com/altercation/vim-colors-solarized
-https://github.com/rakr/vim-one
-https://github.com/tpope/vim-fugitive
-https://github.com/hdima/python-syntax
+https://github.com/rakr/vim-one.git
+# https://github.com/tpope/vim-fugitive/
+# https://github.com/hdima/python-syntax
 https://github.com/nvie/vim-flake8
