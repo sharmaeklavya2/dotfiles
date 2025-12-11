@@ -110,6 +110,7 @@ if has("autocmd")
     autocmd VimEnter * call SetPluginOptionsNow()
 endif
 
+if has("eval")
 function! SetPluginOptionsNow()
     " call flake8 on saving file
     if exists('*Flake8')
@@ -159,3 +160,4 @@ function! SetPluginOptionsNow()
         nmap <silent><nowait> ]g <Plug>(coc-diagnostic-next)
     endif
 endfunction
+endif
