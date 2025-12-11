@@ -23,6 +23,7 @@ set textwidth=10000000  " disable auto-wrapping
 " Things to make coc.nvim work. See https://github.com/neoclide/coc.nvim#example-vim-configuration
 set nobackup
 set nowritebackup
+set updatetime=300  " CursorHold triggers after 300 ms of inactivity
 
 if has("syntax")
     syntax enable  " enable syntax highlighting
@@ -42,13 +43,11 @@ endif
 if has("autocmd")
     " check if file has been modified outside vim
     set autoread
-    autocmd CursorHold * call Timer()
-    function! Timer()
-        call feedkeys("f\e")
+    autocmd FileChangedShell * echo "File changed, type :e! to forcibly reload."
+    function! FileCheckTimer(timer_id)
         checktime
     endfunction
-    set updatetime=5000  " milliseconds
-    autocmd FileChangedShell * echo "File changed, type :e! to reload."
+    call timer_start(5000, 'FileCheckTimer', {'repeat': -1})
 
     " spell check
     autocmd FileType text set spell spelllang=en_us
