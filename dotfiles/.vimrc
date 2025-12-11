@@ -18,6 +18,11 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set autoindent
+set textwidth=10000000  " disable auto-wrapping
+
+" Things to make coc.nvim work. See https://github.com/neoclide/coc.nvim#example-vim-configuration
+set nobackup
+set nowritebackup
 
 if has("syntax")
     syntax enable  " enable syntax highlighting
@@ -62,6 +67,12 @@ if has("autocmd")
     if exists('*Flake8')
         autocmd BufWritePost *.py call Flake8()
     endif
+
+    " coc.nvim
+    autocmd FileType * setlocal formatoptions-=o  " don't insert comment leader after o
+    if exists('*CocActionAsync')
+        autocmd CursorHold * silent call CocActionAsync('highlight')  " Highlight all copies of symbol the cursor is over
+    endif
 endif
 
 filetype plugin on  " https://github.com/nvie/vim-flake8/issues/13#issuecomment-161026086
@@ -105,3 +116,40 @@ endif
 silent! colorscheme solarized8
 " silent! colorscheme one
 " call SetBackground()  " SetBackground must be called _after_ 'colorscheme one'
+
+" Keymaps for coc.nvim
+if exists('*coc#rpc#ready')
+    " 1. tab: If popup menu is visible, jump to next completion item, else open completion or indent.
+    inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()
+
+    function! CheckBackspace() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+
+    " 2. shift+tab: If popup menu is visible, jump to previous completion item, else do a backspace.
+    inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+    " 3. enter: If popup menu is visible, confirm the selection.
+    inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+    " 4. K: show documentation
+    nnoremap <silent> K :call ShowDocumentation()<CR>
+
+    function! ShowDocumentation()
+        if CocAction('hasProvider', 'hover')
+            call CocActionAsync('doHover')
+        else
+            call feedkeys('K', 'in')
+        endif
+    endfunction
+
+    " 5. gd: goto definition
+    nmap <silent><nowait> gd <Plug>(coc-definition)
+
+    " 6. Iterate over diagnostics
+    " `[g` and `]g`: navigate over diagnostics
+    " Use `:CocDiagnostics` to get all diagnostics
+    nmap <silent><nowait> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent><nowait> ]g <Plug>(coc-diagnostic-next)
+endif
