@@ -61,17 +61,6 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.mylog set filetype=diff
     autocmd BufRead,BufNewFile *.html.jinja2 set filetype=htmldjango
     autocmd BufRead,BufNewFile *.cleaver set filetype=markdown
-
-    " call flake8 on saving file
-    if exists('*Flake8')
-        autocmd BufWritePost *.py call Flake8()
-    endif
-
-    " coc.nvim
-    autocmd FileType * setlocal formatoptions-=o  " don't insert comment leader after o
-    if exists('*CocActionAsync')
-        autocmd CursorHold * silent call CocActionAsync('highlight')  " Highlight all copies of symbol the cursor is over
-    endif
 endif
 
 filetype plugin on  " https://github.com/nvie/vim-flake8/issues/13#issuecomment-161026086
@@ -105,50 +94,68 @@ if has("eval")
     let g:one_allow_italics=1
 endif
 
-if (has("termguicolors"))
+if has("termguicolors")
     set termguicolors
 endif
 
 " https://github.com/morhetz/gruvbox/wiki/Installation
-" autocmd vimenter * ++nested colorscheme gruvbox
+" autocmd vimEnter * ++nested colorscheme gruvbox
 " silent! colorscheme gruvbox
 silent! colorscheme solarized8
 " silent! colorscheme one
 " call SetBackground()  " SetBackground must be called _after_ 'colorscheme one'
 
-" Keymaps for coc.nvim
-if exists('*coc#rpc#ready')
-    " 1. tab: If popup menu is visible, jump to next completion item, else open completion or indent.
-    inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()
-
-    function! CheckBackspace() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
-
-    " 2. shift+tab: If popup menu is visible, jump to previous completion item, else do a backspace.
-    inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-    " 3. enter: If popup menu is visible, confirm the selection.
-    inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-    " 4. K: show documentation
-    nnoremap <silent> K :call ShowDocumentation()<CR>
-
-    function! ShowDocumentation()
-        if CocAction('hasProvider', 'hover')
-            call CocActionAsync('doHover')
-        else
-            call feedkeys('K', 'in')
-        endif
-    endfunction
-
-    " 5. gd: goto definition
-    nmap <silent><nowait> gd <Plug>(coc-definition)
-
-    " 6. Iterate over diagnostics
-    " `[g` and `]g`: navigate over diagnostics
-    " Use `:CocDiagnostics` to get all diagnostics
-    nmap <silent><nowait> [g <Plug>(coc-diagnostic-prev)
-    nmap <silent><nowait> ]g <Plug>(coc-diagnostic-next)
+" Plugin specific code  # https://superuser.com/a/931316
+if has("autocmd")
+    autocmd VimEnter * call SetPluginOptionsNow()
 endif
+
+function! SetPluginOptionsNow()
+    " call flake8 on saving file
+    if exists('*Flake8')
+        autocmd BufWritePost *.py call Flake8()
+    endif
+
+    " coc.nvim
+    autocmd FileType * setlocal formatoptions-=o  " don't insert comment leader after o
+    if exists('*CocActionAsync')
+        autocmd CursorHold * silent call CocActionAsync('highlight')  " Highlight all copies of symbol the cursor is over
+    endif
+
+    " Keymaps for coc.nvim
+    if exists('*coc#rpc#ready')
+        " 1. tab: If popup menu is visible, jump to next completion item, else open completion or indent.
+        inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()
+
+        function! CheckBackspace() abort
+            let col = col('.') - 1
+            return !col || getline('.')[col - 1]  =~# '\s'
+        endfunction
+
+        " 2. shift+tab: If popup menu is visible, jump to previous completion item, else do a backspace.
+        inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+        " 3. enter: If popup menu is visible, confirm the selection.
+        inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+        " 4. K: show documentation
+        nnoremap <silent> K :call ShowDocumentation()<CR>
+
+        function! ShowDocumentation()
+            if CocAction('hasProvider', 'hover')
+                call CocActionAsync('doHover')
+            else
+                call feedkeys('K', 'in')
+            endif
+        endfunction
+
+        " 5. gd: goto definition
+        nmap <silent><nowait> gd <Plug>(coc-definition)
+
+        " 6. Iterate over diagnostics
+        " `[g` and `]g`: navigate over diagnostics
+        " Use `:CocDiagnostics` to get all diagnostics
+        nmap <silent><nowait> [g <Plug>(coc-diagnostic-prev)
+        nmap <silent><nowait> ]g <Plug>(coc-diagnostic-next)
+    endif
+endfunction
