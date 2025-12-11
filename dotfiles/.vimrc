@@ -71,7 +71,7 @@ if has("eval")
     let g:airline_exclude_preview=1  " Make airline usable with jedi-vim
     let g:ctags_statusline=1
     let g:flake8_show_in_gutter=1
-    let g:airline_extensions = []
+    let g:airline_extensions = ["whitespace"]
 
     " set background based on system theme
     set background=dark
