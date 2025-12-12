@@ -92,6 +92,7 @@ if has("eval")
 
     let g:gruvbox_italic=1  " https://github.com/morhetz/gruvbox/wiki/Terminal-specific
     let g:one_allow_italics=1
+    " let g:gruvbox_guisp_fallback = 'bg'  " https://github.com/morhetz/gruvbox/issues/175#issuecomment-390428621
 endif
 
 if has("termguicolors")
@@ -101,9 +102,12 @@ endif
 " https://github.com/morhetz/gruvbox/wiki/Installation
 " autocmd vimEnter * ++nested colorscheme gruvbox
 " silent! colorscheme gruvbox
-silent! colorscheme solarized8
-" silent! colorscheme one
+" silent! colorscheme solarized8
+silent! colorscheme one
 " call SetBackground()  " SetBackground must be called _after_ 'colorscheme one'
+
+" highlight spelling errors
+highlight SpellBad cterm=underline
 
 " Plugin specific code  # https://superuser.com/a/931316
 if has("autocmd")
