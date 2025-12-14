@@ -11,6 +11,7 @@ https://github.com/vim-airline/vim-airline-themes  # have airline switch colors 
 # language support
 https://github.com/nvie/vim-flake8  # python linting
 https://github.com/neoclide/coc.nvim  # LSP-based completions. Run `npm ci` in the repo.
+https://github.com/sharmaeklavya2/showmylog.vim  # syntax highlighting for .mylog files
 
 # misc
 # https://github.com/tpope/vim-fugitive  # provides `:Git blame`
