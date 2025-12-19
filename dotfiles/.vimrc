@@ -109,6 +109,17 @@ silent! colorscheme one
 
 " highlight spelling errors
 highlight SpellBad cterm=underline
+highlight SpellCap cterm=underline
+" highlight SpellRare cterm=underline
+" highlight SpellLocal cterm=underline
+if has("eval")
+    let b:spellfile = getcwd().'/.spell.utf-8.add'
+    if filereadable(b:spellfile)
+        let &l:spellfile = b:spellfile
+    else
+        setlocal spellfile=
+    endif
+endif
 
 " Plugin specific code  # https://superuser.com/a/931316
 if has("autocmd")
