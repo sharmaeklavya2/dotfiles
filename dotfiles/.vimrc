@@ -130,16 +130,21 @@ function! SetPluginOptionsNow()
 
     " Keymaps for coc.nvim
     if exists('*coc#rpc#ready')
-        " 1. tab: If popup menu is visible, jump to next completion item, else open completion or indent.
-        inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()
-
         function! CheckBackspace() abort
             let col = col('.') - 1
             return !col || getline('.')[col - 1]  =~# '\s'
         endfunction
 
+        function! DoNothing() abort
+        endfunction
+
+        " 1. tab: If popup menu is visible, jump to next completion item, else open completion or indent.
+        " inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()
+        " 1. tab: If popup menu is visible, do nothing.
+        inoremap <silent><expr> <TAB> coc#pum#visible() ? "\<Ignore>" : CheckBackspace() ? "\<Tab>" : coc#refresh()
+
         " 2. shift+tab: If popup menu is visible, jump to previous completion item, else do a backspace.
-        inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+        " inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
         " 3. enter: If popup menu is visible, confirm the selection.
         inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
