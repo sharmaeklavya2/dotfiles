@@ -40,6 +40,21 @@ endif
     " set mouse=nvi  " enable mouse use
 " endif
 
+if has("eval")
+    function! ConfigureSpelling()
+        set spell spelllang=en_us
+        let g:tex_comment_nospell=1
+
+        " use a spellfile from current directory if available
+        let b:spellfile = getcwd().'/.spell.utf-8.add'
+        if filereadable(b:spellfile)
+            let &l:spellfile = b:spellfile
+        else
+            setlocal spellfile=
+        endif
+    endfunction
+endif
+
 if has("autocmd")
     " check if file has been modified outside vim
     set autoread
@@ -50,9 +65,15 @@ if has("autocmd")
     call timer_start(5000, 'FileCheckTimer', {'repeat': -1})
 
     " spell check
-    autocmd FileType text set spell spelllang=en_us
-    autocmd FileType markdown set spell spelllang=en_us
-    autocmd FileType tex set spell spelllang=en_us
+    if has("eval")
+        autocmd FileType text call ConfigureSpelling()
+        autocmd FileType markdown call ConfigureSpelling()
+        autocmd FileType tex call ConfigureSpelling()
+    else
+        autocmd FileType text set spell spelllang=en_us
+        autocmd FileType markdown set spell spelllang=en_us
+        autocmd FileType tex set spell spelllang=en_us
+    endif
 
     " custom syntax highlighting
     autocmd BufRead,BufNewFile *.pyi set filetype=python
@@ -108,18 +129,11 @@ silent! colorscheme one
 " call SetBackground()  " SetBackground must be called _after_ 'colorscheme one'
 
 " highlight spelling errors
+" This must be done after loading the colorscheme
 highlight SpellBad cterm=underline
 highlight SpellCap cterm=underline
 " highlight SpellRare cterm=underline
 " highlight SpellLocal cterm=underline
-if has("eval")
-    let b:spellfile = getcwd().'/.spell.utf-8.add'
-    if filereadable(b:spellfile)
-        let &l:spellfile = b:spellfile
-    else
-        setlocal spellfile=
-    endif
-endif
 
 " Plugin specific code  # https://superuser.com/a/931316
 if has("autocmd")
