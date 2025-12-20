@@ -13,3 +13,6 @@ Running `scripts/get_vim_packages.py` will clone all git repositories
 mentioned in `vimpackages.txt` into `~/.vim/pack/default/start`.
 For some repositories, you may need to run additional commands, e.g., switching to a different branch.
 See the comments in `vimpackages.txt` for more info.
+
+`ekuVimPlugin` is my custom vim plugin for miscellaneous stuff.
+Symlink it into `~/.vim/pack/default/start`.
