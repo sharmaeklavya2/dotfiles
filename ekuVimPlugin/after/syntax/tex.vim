@@ -13,6 +13,7 @@ endif
 " highlight cref
 if s:tex_fast =~# 'r'
     syn region texRefZone  matchgroup=texStatement  start="\\cref{"  end="}\|%stopzone\>"  contains=@texRefGroup
+    syn region texRefZone  matchgroup=texStatement  start="\\Cref{"  end="}\|%stopzone\>"  contains=@texRefGroup
 endif
 
 " The following line is obtained by taking the corresponding line from $VIMRUNTIME/syntax/tex.vim
