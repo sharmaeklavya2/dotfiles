@@ -43,7 +43,8 @@ endif
 
 if has("eval")
     function! ConfigureSpelling()
-        set spell spelllang=en_us
+        setlocal spell spelllang=en_us
+        syntax sync minlines=1000
         let g:tex_comment_nospell=1
 
         " use a spellfile from current directory if available
@@ -71,9 +72,9 @@ if has("autocmd")
         autocmd FileType markdown call ConfigureSpelling()
         autocmd FileType tex call ConfigureSpelling()
     else
-        autocmd FileType text set spell spelllang=en_us
-        autocmd FileType markdown set spell spelllang=en_us
-        autocmd FileType tex set spell spelllang=en_us
+        autocmd FileType text setlocal spell spelllang=en_us
+        autocmd FileType markdown setlocal spell spelllang=en_us
+        autocmd FileType tex setlocal spell spelllang=en_us
     endif
 
     " custom syntax highlighting
