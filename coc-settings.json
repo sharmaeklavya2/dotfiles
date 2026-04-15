@@ -1,0 +1,5 @@
+{
+    "inlayHint.enable": false,
+    "html.autoClosingTags": false,
+    "html.autoCreateQuotes": false
+}

@@ -53,12 +53,15 @@ def main():
     parser.add_argument('-o', help='destination directory (default: $HOME)')
     args = parser.parse_args()
 
-    dotfilesDir = pjoin(dirname(dirname(abspath(__file__))), 'dotfiles')
+    repoDir = dirname(dirname(abspath(__file__)))
+    dotfilesDir = pjoin(repoDir, 'dotfiles')
     outDir = args.o or os.environ['HOME']
 
     makeAllLinks(dotfilesDir, outDir, linkDirs=False, dryRun=args.dry_run)
     makeLink(pjoin(dotfilesDir, '.eku'), pjoin(outDir, '.eku'), dryRun=args.dry_run)
     makeAllLinks(pjoin(dotfilesDir, '.config'), pjoin(outDir, '.config'), linkDirs=True, dryRun=args.dry_run)
+    mkdirP(pjoin(outDir, '.vim'), dryRun=args.dry_run)
+    makeLink(pjoin(repoDir, 'coc-settings.json'), pjoin(outDir, '.vim', 'coc-settings.json'), dryRun=args.dry_run)
 
 
 if __name__ == '__main__':
