@@ -23,17 +23,21 @@ def makeLink(src, dst, dryRun=False):
                 print('{}: could not symlink {} to {}'.format(e.strerror, src, dst), file=sys.stderr)
 
 
-def makeAllLinks(sourceDir, targetDir, linkDirs, dryRun=False):
-    """Finds all files (not directories) in sourceDir and makes symlinks to them in targetDir."""
+def mkdirP(dirPath, dryRun=False):
     if dryRun:
-        print('> mkdir', targetDir)
+        print('> mkdir -p', dirPath)
     else:
         try:
-            os.mkdir(targetDir)
+            os.mkdir(dirPath)
             pass
         except OSError as e:
-            if e.errno != errno.EEXIST or not os.path.isdir(targetDir):
+            if e.errno != errno.EEXIST or not os.path.isdir(dirPath):
                 raise
+
+
+def makeAllLinks(sourceDir, targetDir, linkDirs, dryRun=False):
+    """Finds all files (not directories) in sourceDir and makes symlinks to them in targetDir."""
+    mkdirP(targetDir, dryRun)
 
     for fname in os.listdir(sourceDir):
         sfpath = pjoin(sourceDir, fname)
