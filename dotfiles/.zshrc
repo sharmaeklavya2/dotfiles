@@ -5,6 +5,7 @@ fi
 
 export CLICOLOR=1  # colored output for ls
 export LSCOLORS="gxfxbxdxcxegedabagacad"  # replace directory color from blue (c) to cyan (g), since ANSI blue looks too dark.
+WORDCHARS=''
 
 # set the prompt
 autoload -Uz vcs_info
