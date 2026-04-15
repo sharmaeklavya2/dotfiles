@@ -19,6 +19,7 @@ set softtabstop=4
 set shiftwidth=4
 set autoindent
 set textwidth=10000000  " disable auto-wrapping
+set display+=lastline
 
 " Things to make coc.nvim work. See https://github.com/neoclide/coc.nvim#example-vim-configuration
 set nobackup
