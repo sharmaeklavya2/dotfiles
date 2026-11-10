@@ -32,3 +32,9 @@ endif
 
 hi def link texRestatableInner texBeginEndName
 hi def link texRestatableType  texBeginEndName
+
+" highlight \begin{comment} ... \end{comment} (comment package) like % comments.
+" Must come after the texBeginEnd definition above, so that this region wins at \begin.
+if s:tex_fast =~# 'c'
+    syn region texComment  start="\\begin\s*{\s*comment\s*}"  end="\\end\s*{\s*comment\s*}"  contains=@texCommentGroup
+endif
